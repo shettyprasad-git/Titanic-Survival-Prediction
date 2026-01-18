@@ -133,13 +133,10 @@ Titanic-Survival-Prediction/
 │   └── Project dependencies
 │
 ├── 📝 README.md
-│   └── Project overview and usage instructions
+│   └── Project overview and usage instructions 
 │
-├── 📘 Titanic_Survival_Prediction_Model_Development_and_Deployment.pdf
-│   └── Detailed project documentation
-│
-└── 📜 LICENSE
-    └── MIT License
+└── 📘 Titanic_Survival_Prediction_Model_Development_and_Deployment.pdf
+    └──Detailed project documentation
 ```
 
 ---
@@ -165,12 +162,7 @@ streamlit run app.py
 
 ## 👤 Author
 
-**Durga Prasad Shetty**  
+**Durga Prasad**  
 - GitHub: https://github.com/shettyprasad-git  
 - LinkedIn: https://www.linkedin.com/in/durgaprasadshetty  
 
----
-
-## 📜 License
-
-This project is licensed under the **MIT License**.
