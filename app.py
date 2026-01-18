@@ -100,4 +100,3 @@ if st.button("Predict Survival"):
 
 st.markdown("---")
 st.caption("Random Forest model trained with stratified cross-validation.")
-
