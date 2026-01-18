@@ -12,7 +12,7 @@ st.set_page_config(
 )
 
 st.title("🚢 Titanic Survival Prediction")
-st.write("Predict passenger survival based on travel and personal details.")
+st.write("Predict whether a passenger survived the Titanic disaster.")
 
 
 # Load Trained Model
@@ -30,27 +30,27 @@ st.subheader("Passenger Details")
 
 pclass = st.selectbox(
     "Passenger Class",
-    options=[1, 2, 3]
+    [1, 2, 3]
 )
 
 sex = st.selectbox(
     "Sex",
-    options=["male", "female"]
+    ["male", "female"]
 )
 
 embarked = st.selectbox(
     "Port of Embarkation",
-    options=["Cherbourg", "Queenstown", "Southampton"]
+    ["Cherbourg", "Queenstown", "Southampton"]
 )
 
 age_group = st.selectbox(
     "Age Group",
-    options=["Child", "Teen", "Adult", "Senior"]
+    ["Child", "Teen", "Adult", "Senior"]
 )
 
 fare_bin = st.selectbox(
     "Fare Category",
-    options=["Very Low", "Low", "High", "Very High"]
+    ["Very Low", "Low", "High", "Very High"]
 )
 
 is_alone = st.checkbox("Traveling Alone?")
@@ -69,11 +69,24 @@ input_df = pd.DataFrame([{
 }])
 
 
-# Prediction
+# Prediction (MANUAL DUMMY MATCHING)
 
 if st.button("Predict Survival"):
-    prediction = model.predict(input_df)[0]
-    probability = model.predict_proba(input_df)[0][1]
+
+    # Convert categorical inputs to dummies
+    input_encoded = pd.get_dummies(input_df)
+
+    # Add missing columns expected by the model
+    for col in model.feature_names_in_:
+        if col not in input_encoded.columns:
+            input_encoded[col] = 0
+
+    # Ensure column order matches training
+    input_encoded = input_encoded[model.feature_names_in_]
+
+    # Make prediction
+    prediction = model.predict(input_encoded)[0]
+    probability = model.predict_proba(input_encoded)[0][1]
 
     st.subheader("Prediction Result")
 
@@ -86,4 +99,5 @@ if st.button("Predict Survival"):
 # Footer
 
 st.markdown("---")
-st.caption("Model trained using Random Forest with stratified cross-validation.")
+st.caption("Random Forest model trained with stratified cross-validation.")
+
